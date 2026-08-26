@@ -2,112 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Raksha Bandhan Bhai! ❤️</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        festive: {
-                            red: '#d32f2f',
-                            pink: '#fdf2f8', // blush pink
-                            cream: '#fffdf5', // warm cream
-                            gold: '#d4af37',
-                            maroon: '#800000',
-                            blue: '#e0f2fe' // soft blue for stickers
-                        }
-                    },
-                    fontFamily: {
-                        'serif': ['"Playfair Display"', 'serif'],
-                        'sans': ['"Poppins"', 'sans-serif'],
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-slow': 'float 8s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'zoom-in': 'zoomIn 1.5s ease-out forwards',
-                        'fade-in': 'fadeIn 1s ease-out forwards',
-                        'spin-slow': 'spin 12s linear infinite',
-                        'wiggle': 'wiggle 1s ease-in-out infinite',
-                        'bounce-soft': 'bounceSoft 2s infinite'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        },
-                        zoomIn: {
-                            '0%': { transform: 'scale(0.9)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        wiggle: {
-                            '0%, 100%': { transform: 'rotate(-3deg)' },
-                            '50%': { transform: 'rotate(3deg)' },
-                        },
-                        bounceSoft: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-25%)' }
-                        },
-                        orbit: {
-                            '0%': { transform: 'rotate(0deg) translateX(110px) rotate(0deg)' },
-                            '100%': { transform: 'rotate(360deg) translateX(110px) rotate(-360deg)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { boxShadow: '0 0 15px rgba(212, 175, 55, 0.4)', transform: 'scale(1)' },
-                            '50%': { boxShadow: '0 0 40px rgba(211, 47, 47, 0.6)', transform: 'scale(1.02)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts from previous theme -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
+        /* ================= THEME STYLES ================= */
         body {
-            background: linear-gradient(135deg, #fdf2f8 0%, #fffdf5 50%, #fdf2f8 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2a0a18 0%, #4c0519 50%, #1e1b4b 100%);
+            color: white;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
+            min-height: 100vh;
+        }
+        
+        .heading-font {
+            font-family: 'Baloo Bhai 2', cursive;
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.6);
+        /* Glassmorphism from previous */
+        .glass-box {
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 32px 0 rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .gold-border {
-            border: 2px solid #d4af37;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .sticker {
-            position: absolute;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-            z-index: 20;
-            transition: transform 0.3s ease;
-        }
-        
-        .sticker:hover {
-            transform: scale(1.1) rotate(5deg);
+            border: 2px solid #fbbf24; /* Amber/Gold border for dark theme */
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
         }
 
         /* Screen transitions */
         .screen {
             display: none;
             opacity: 0;
-            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-            transform: translateY(20px);
+            transition: opacity 0.6s ease-in-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(0.95) translateY(20px);
             width: 100%;
             max-width: 32rem; /* max-w-lg equivalent */
             margin: 0 auto;
@@ -116,87 +57,70 @@
         .screen.active {
             display: flex;
             opacity: 1;
-            transform: translateY(0);
+            transform: scale(1) translateY(0);
         }
 
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        /* Animations */
+        .btn-squish {
+            transition: all 0.2s ease;
+        }
+        .btn-squish:active {
+            transform: scale(0.92) translateY(4px);
+        }
+
+        .float-emoji {
+            position: absolute;
+            animation: floatUp linear infinite;
+            opacity: 0.3;
             pointer-events: none;
             z-index: 0;
         }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); }
+            100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); }
         }
 
-        .gift-container {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            margin: 0 auto;
+        @keyframes bounceSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
-        .gift-container:hover {
-            transform: scale(1.05);
+        .animate-bounce-soft {
+            animation: bounceSoft 3s ease-in-out infinite;
         }
-        .gift-box {
-            width: 120px;
-            height: 100px;
-            background: #d32f2f;
-            border-radius: 8px;
-            position: relative;
-            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.3);
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
         }
-        .gift-lid {
-            width: 130px;
-            height: 30px;
-            background: #800000;
-            border-radius: 6px;
-            position: absolute;
-            top: -15px;
-            left: -5px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: bottom right;
+        .animate-wiggle {
+            animation: wiggle 2s ease-in-out infinite;
         }
-        .gift-ribbon-v, .gift-lid-ribbon {
-            position: absolute;
-            width: 20px;
-            height: 100%;
-            background: #d4af37;
-            left: 50%;
-            transform: translateX(-50%);
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(251, 113, 133, 0.4), inset 0 0 10px rgba(251, 113, 133, 0.2); transform: scale(1); }
+            50% { box-shadow: 0 0 30px rgba(251, 113, 133, 0.8), inset 0 0 20px rgba(251, 113, 133, 0.4); transform: scale(1.02); }
         }
-        .gift-ribbon-h {
-            position: absolute;
-            height: 20px;
-            width: 100%;
-            background: #d4af37;
-            top: 50%;
-            transform: translateY(-50%);
+        .pulse-glow-anim {
+            animation: pulseGlow 3s infinite alternate;
         }
-        .gift-container.opened .gift-lid {
-            transform: rotate(-110deg) translate(-20px, -20px);
-            opacity: 0;
+
+        /* Modals */
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
-        .gift-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            box-shadow: 0 0 100px 50px rgba(212, 175, 55, 0);
-            transition: box-shadow 1s ease;
-            pointer-events: none;
+
+        /* Specific Modifiers for options */
+        .quiz-option {
+            background: rgba(80, 20, 50, 0.4);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            transition: all 0.3s ease;
         }
-        .gift-container.opened .gift-glow {
-            box-shadow: 0 0 150px 80px rgba(212, 175, 55, 0.8);
+        .quiz-option:hover {
+            background: rgba(225, 29, 72, 0.4);
+            border-color: rgba(251, 113, 133, 0.8);
+            transform: translateX(5px);
         }
 
         /* Final Photo Grid */
@@ -210,663 +134,613 @@
             transform: scale(1);
         }
 
-        .pulse-glow-anim {
-            animation: pulseGlow 3s infinite alternate;
+        /* Gift Box */
+        .gift-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin: 0 auto;
         }
-
-        .orbit-container {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 10px; height: 10px;
-            margin-top: -5px; margin-left: -5px;
-            z-index: 20;
+        .gift-container:hover {
+            transform: scale(1.05);
         }
-        
-        .orbit-item {
+        .gift-box {
+            width: 140px;
+            height: 120px;
+            background: #e11d48; /* Rose 600 */
+            border-radius: 8px;
+            position: relative;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.3), 0 15px 25px rgba(0,0,0,0.5);
+            margin: 0 auto;
+        }
+        .gift-lid {
+            width: 150px;
+            height: 35px;
+            background: #be123c; /* Rose 700 */
+            border-radius: 6px;
             position: absolute;
-            top: -25px; left: -25px;
-            width: 50px; height: 50px;
+            top: -18px;
+            left: -5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: bottom right;
+        }
+        .gift-ribbon-v, .gift-lid-ribbon {
+            position: absolute;
+            width: 24px;
+            height: 100%;
+            background: #fbbf24; /* Amber 400 */
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .gift-ribbon-h {
+            position: absolute;
+            height: 24px;
+            width: 100%;
+            background: #fbbf24;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .gift-container.opened .gift-lid {
+            transform: rotate(-110deg) translate(-20px, -20px);
+            opacity: 0;
+        }
+        .gift-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            overflow: hidden;
-            animation: orbit 15s linear infinite;
+            box-shadow: 0 0 100px 50px rgba(251, 191, 36, 0);
+            transition: box-shadow 1s ease;
+            pointer-events: none;
+            z-index: -1;
         }
-        .orbit-item img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-        
-        .orbit-1 { animation-delay: 0s; }
-        .orbit-2 { animation-delay: -3.75s; }
-        .orbit-3 { animation-delay: -7.5s; }
-        .orbit-4 { animation-delay: -11.25s; }
-        
-        /* Modals */
-        .modal-overlay {
-            background: rgba(253, 242, 248, 0.8);
-            backdrop-filter: blur(8px);
+        .gift-container.opened .gift-glow {
+            box-shadow: 0 0 150px 80px rgba(251, 191, 36, 0.6);
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased min-h-screen flex flex-col justify-center items-center">
+<body class="flex flex-col justify-center items-center relative min-h-screen w-full">
 
-    <canvas id="particle-canvas"></canvas>
+    <!-- FLOATING BACKGROUND EMOJIS (From old theme) -->
+    <div id="bg-particles" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
 
-    <!-- MAIN CONTAINER -->
-    <div class="content-wrapper w-full px-4 py-8 h-full flex flex-col justify-center items-center min-h-screen">
+    <!-- MAIN WRAPPER: Ensures absolute centering -->
+    <div class="relative w-full px-4 py-8 h-full flex flex-col justify-center items-center min-h-screen z-10">
 
-        <!-- SCREEN 1: HOME -->
+        <!-- ================= SCREEN 1: HOME ================= -->
         <section id="screen-1" class="screen active flex-col items-center text-center">
             
-            <div class="relative mb-8 animate-float w-48 h-48 md:w-64 md:h-64 mx-auto">
-                <!-- Cute Stickers / Decorations -->
-                <div class="sticker -top-4 -left-4 text-3xl animate-bounce-soft" style="animation-delay: 0.2s">⚓</div>
-                <div class="sticker top-10 -right-8 text-3xl animate-wiggle">🐧</div>
-                <div class="sticker -bottom-2 -left-6 text-3xl animate-float-slow">🐳</div>
-                <div class="sticker -bottom-6 right-2 text-2xl text-festive-gold animate-spin-slow">✨</div>
-                <div class="sticker top-0 right-4 text-2xl text-festive-red">🎀</div>
-                <div class="sticker bottom-10 -left-10 text-2xl text-blue-400">💙</div>
+            <div class="relative mb-8 w-48 h-48 md:w-56 md:h-56 mx-auto animate-bounce-soft">
+                <!-- Glowing background -->
+                <div class="absolute inset-0 bg-pink-500 rounded-full blur-2xl opacity-40"></div>
+                
+                <!-- Cute Stickers -->
+                <div class="absolute -top-4 -left-4 text-3xl animate-bounce-soft" style="animation-delay: 0.2s">⚓</div>
+                <div class="absolute top-10 -right-8 text-3xl animate-wiggle">🐧</div>
+                <div class="absolute -bottom-2 -left-6 text-3xl animate-bounce-soft" style="animation-delay: 0.5s">🐳</div>
+                <div class="absolute -bottom-6 right-2 text-2xl text-amber-300 animate-spin" style="animation-duration: 8s;">✨</div>
                 
                 <!-- Brother's Photo -->
-                <div class="relative z-10 w-full h-full rounded-full p-2 gold-border bg-yelllow-50">
+                <div class="relative z-10 w-full h-full rounded-full p-2 gold-border bg-white/10 backdrop-blur-md shadow-2xl">
                     <!-- Placeholder for Cadet Dress Photo -->
-                    <img src="/imagee.png" alt="Brother" class="w-full h-full object-contain     object-[center_35%]  rounded-full">
+                    <img src="imagee.png" alt="Brother" class="w-full h-full object-contain rounded-full bg-black/40" onerror="this.src='https://placehold.co/400x400/1e1b4b/fb7185?text=Bhai'">
                 </div>
             </div>
 
-            <h1 class="font-serif text-4xl md:text-5xl text-festive-maroon font-bold mb-2 drop-shadow-sm">
+            <h1 class="heading-font text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-rose-400 mb-4 drop-shadow-lg leading-tight">
                 HAPPY RAKSHA BANDHAN ❤️
             </h1>
-           
-            <p class="font-sans text-lg italic text-gray-600 mb-8 bg-white/50 px-6 py-2 rounded-full inline-block">
+            
+            <p class="font-sans text-sm md:text-base italic text-pink-100/90 mb-8 glass-box px-6 py-2 rounded-full inline-block shadow-inner">
                 “Bhai, tumhare liye kuch special hai… 👀❤️”
             </p>
 
-            <button onclick="nextScreen(2)" class="px-8 py-4 bg-festive-red text-white font-sans font-bold rounded-full shadow-[0_4px_15px_rgba(211,47,47,0.4)] hover:bg-festive-maroon transition-all duration-300 animate-pulse-slow">
+            <button onclick="nextScreen(2)" class="btn-squish px-8 py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold rounded-full shadow-[0_0_20px_rgba(225,29,72,0.5)] hover:shadow-[0_0_30px_rgba(225,29,72,0.8)] transition-all border border-pink-400/50">
                 OPEN IT → 🎁
             </button>
         </section>
 
-        <!-- SCREEN 2: GAME INTRO -->
+        <!-- ================= SCREEN 2: GAME INTRO ================= -->
         <section id="screen-2" class="screen flex-col items-center text-center">
-            <div class="text-6xl mb-6 animate-wiggle">
+            <div class="text-6xl mb-6 animate-wiggle drop-shadow-lg">
                 👧🐧
             </div>
-            <div class="glass-panel p-8 rounded-3xl w-full gold-border shadow-xl">
-                <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-4">
+            <div class="glass-box p-8 rounded-3xl w-full border border-pink-500/30 shadow-2xl">
+                <h2 class="heading-font text-2xl text-amber-300 font-bold mb-4 drop-shadow-md">
                     Bhai, ek chhota sa game kheloge? 😌
                 </h2>
-                <p class="font-sans text-gray-700 mb-8 text-lg">
+                <p class="font-sans text-pink-100/90 mb-8 text-sm md:text-base">
                     Bas kuch questions hain… dekhte hain tum apni chaaro sisters ko kitna jaante ho! 😂
                 </p>
-                <button onclick="nextScreen(3)" class="w-full py-4 bg-gradient-to-r from-festive-gold to-yellow-500 text-white font-sans font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">
+                <button onclick="nextScreen(3)" class="btn-squish w-full py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-lg rounded-xl shadow-[0_0_15px_rgba(245,158,11,0.5)] border border-amber-300/50">
                     YES, LET'S PLAY 😎
                 </button>
             </div>
         </section>
 
-        <!-- SCREEN 3: Q1 - Favourite Sister -->
+        <!-- ================= SCREEN 3: Q1 ================= -->
         <section id="screen-3" class="screen flex-col items-center text-center">
-            <div class="text-sm font-bold text-festive-gold tracking-widest mb-2">QUESTION 1 ❤️</div>
-            <h2 class="font-serif text-2xl md:text-3xl text-festive-maroon font-bold mb-8">"Who is your favourite sister?" 👀</h2>
+            <div class="text-xs font-bold text-amber-300 bg-amber-900/40 px-3 py-1 rounded-full border border-amber-500/30 tracking-widest mb-4">QUESTION 1 ❤️</div>
+            <h2 class="heading-font text-2xl md:text-3xl text-pink-300 font-bold mb-8">"Who is your favourite sister?" 👀</h2>
 
             <div class="grid grid-cols-1 gap-4 w-full">
-                <div onclick="wrongAnswer('Sister 1 👧')" class="cursor-pointer glass-panel p-4 rounded-xl border border-pink-200 hover:border-festive-red transition-all flex items-center justify-between">
-                    <span class="font-semibold text-lg text-gray-800">SISTER 1 👧</span>
-                    <span class="text-gray-400">→</span>
+                <div onclick="wrongAnswer('Sister 1 👧')" class="quiz-option cursor-pointer p-4 rounded-xl flex items-center justify-between btn-squish">
+                    <span class="font-semibold text-lg text-white">SISTER 1 👧</span>
+                    <span class="text-pink-300/50 text-xl">→</span>
                 </div>
-                <div onclick="wrongAnswer('Sister 2 👧')" class="cursor-pointer glass-panel p-4 rounded-xl border border-pink-200 hover:border-festive-red transition-all flex items-center justify-between">
-                    <span class="font-semibold text-lg text-gray-800">SISTER 2 👧</span>
-                    <span class="text-gray-400">→</span>
+                <div onclick="wrongAnswer('Sister 2 👧')" class="quiz-option cursor-pointer p-4 rounded-xl flex items-center justify-between btn-squish">
+                    <span class="font-semibold text-lg text-white">SISTER 2 👧</span>
+                    <span class="text-pink-300/50 text-xl">→</span>
                 </div>
-                <div onclick="wrongAnswer('Sister 3 👧')" class="cursor-pointer glass-panel p-4 rounded-xl border border-pink-200 hover:border-festive-red transition-all flex items-center justify-between">
-                    <span class="font-semibold text-lg text-gray-800">SISTER 3 👧</span>
-                    <span class="text-gray-400">→</span>
+                <div onclick="wrongAnswer('Sister 3 👧')" class="quiz-option cursor-pointer p-4 rounded-xl flex items-center justify-between btn-squish">
+                    <span class="font-semibold text-lg text-white">SISTER 3 👧</span>
+                    <span class="text-pink-300/50 text-xl">→</span>
                 </div>
-                <div onclick="rightAnswer('q1-correct')" class="cursor-pointer glass-panel p-4 rounded-xl gold-border bg-white hover:bg-festive-pink transition-all flex items-center justify-between shadow-md">
-                    <span class="font-bold text-lg text-festive-maroon">ME 😌❤️</span>
-                    <span class="text-festive-gold">→</span>
+                <div onclick="rightAnswer('q1-correct')" class="quiz-option cursor-pointer p-4 rounded-xl flex items-center justify-between shadow-[0_0_10px_rgba(225,29,72,0.3)] btn-squish">
+                    <span class="font-bold text-lg text-amber-300">ME 😌❤️</span>
+                    <span class="text-amber-300 text-xl animate-pulse">→</span>
                 </div>
             </div>
         </section>
 
-        <!-- Wrong Answer Modal (Reusable) -->
-        <div id="wrong-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
-            <div class="glass-panel p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300 border border-gray-300" id="wrong-modal-content">
-                <div class="text-6xl mb-4 animate-wiggle" id="wrong-emoji">😤</div>
-                <h2 id="wrong-title" class="font-serif text-2xl text-festive-red font-bold mb-2">Ohhh… really? 👀</h2>
-                <p id="wrong-desc" class="font-sans text-gray-700 mb-6">Bhai, ek baar aur soch lo… 😂</p>
-                <div id="wrong-buttons" class="flex flex-col gap-3">
-                    <button onclick="confirmWrong()" class="px-6 py-2 bg-gray-100 text-gray-500 rounded-full font-semibold hover:bg-gray-200 transition-colors w-full border border-gray-300">
-                        Yes, I'm sure 😎
-                    </button>
-                    <button onclick="closeModal('wrong-modal')" class="px-6 py-3 bg-festive-red text-white rounded-full font-semibold hover:bg-festive-maroon transition-colors w-full shadow-md">
-                        No, let me change 😅
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Answer Modal (For Q1) -->
-        <div id="q1-correct" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
-            <div class="glass-panel p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300 gold-border" id="q1-correct-content">
-                <div class="text-6xl mb-4 animate-float">🎉</div>
-                <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-2">YESSS! I KNEW IT! 😭❤️</h2>
-                <p class="font-sans text-gray-700 mb-6">Finally sach saamne aa hi gaya. 😌</p>
-                <button onclick="proceedTo(4, 'q1-correct')" class="w-full px-6 py-3 bg-festive-red text-white rounded-full font-semibold hover:bg-festive-maroon transition-colors shadow-lg shadow-red-200">
-                    NEXT →
-                </button>
-            </div>
-        </div>
-
-        <!-- SCREEN 4: Q2 - Secret Question -->
+        <!-- ================= SCREEN 4: Q2 ================= -->
         <section id="screen-4" class="screen flex-col items-center text-center">
-            <div class="text-sm font-bold text-festive-gold tracking-widest mb-2">QUESTION 2 🤫</div>
-            <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-6">"Tumhare secrets sabse zyada kaun jaanti hai?"</h2>
+            <div class="text-xs font-bold text-amber-300 bg-amber-900/40 px-3 py-1 rounded-full border border-amber-500/30 tracking-widest mb-4">QUESTION 2 🤫</div>
+            <h2 class="heading-font text-2xl text-pink-300 font-bold mb-6">"Tumhare secrets sabse zyada kaun jaanti hai?"</h2>
 
             <div class="grid grid-cols-1 gap-3 w-full text-left">
-                <div onclick="simpleReaction('Bhai main chup hi theek hoon 😂', 'Sister 1: Main kuch nahi bataungi… 👀')" class="cursor-pointer glass-panel p-4 rounded-xl border hover:bg-gray-50 transition-all">
-                    <span class="text-sm text-gray-500 block mb-1">Sister 1</span>
-                    <span class="font-medium">"Main kuch nahi bataungi… 👀"</span>
+                <div onclick="simpleReaction('Bhai main chup hi theek hoon 😂', 'Sister 1: Main kuch nahi bataungi… 👀')" class="quiz-option cursor-pointer p-4 rounded-xl btn-squish">
+                    <span class="text-xs text-pink-300/70 block mb-1 uppercase font-bold">Sister 1</span>
+                    <span class="font-medium text-white">"Main kuch nahi bataungi… 👀"</span>
                 </div>
-                <div onclick="simpleReaction('Oh really? 😏', 'Sister 2: Mujhe already sab pata hai 😎')" class="cursor-pointer glass-panel p-4 rounded-xl border hover:bg-gray-50 transition-all">
-                    <span class="text-sm text-gray-500 block mb-1">Sister 2</span>
-                    <span class="font-medium">"Mujhe already sab pata hai 😎"</span>
+                <div onclick="simpleReaction('Oh really? 😏', 'Sister 2: Mujhe already sab pata hai 😎')" class="quiz-option cursor-pointer p-4 rounded-xl btn-squish">
+                    <span class="text-xs text-pink-300/70 block mb-1 uppercase font-bold">Sister 2</span>
+                    <span class="font-medium text-white">"Mujhe already sab pata hai 😎"</span>
                 </div>
-                <div onclick="simpleReaction('Sach mein? 😂', 'Sister 3: Secret? Kaunsa secret? 😂')" class="cursor-pointer glass-panel p-4 rounded-xl border hover:bg-gray-50 transition-all">
-                    <span class="text-sm text-gray-500 block mb-1">Sister 3</span>
-                    <span class="font-medium">"Secret? Kaunsa secret? 😂"</span>
+                <div onclick="simpleReaction('Sach mein? 😂', 'Sister 3: Secret? Kaunsa secret? 😂')" class="quiz-option cursor-pointer p-4 rounded-xl btn-squish">
+                    <span class="text-xs text-pink-300/70 block mb-1 uppercase font-bold">Sister 3</span>
+                    <span class="font-medium text-white">"Secret? Kaunsa secret? 😂"</span>
                 </div>
-                <div onclick="rightAnswer('q2-correct')" class="cursor-pointer glass-panel p-4 rounded-xl gold-border bg-festive-pink/50 hover:bg-festive-pink transition-all shadow-sm">
-                    <span class="text-sm text-festive-maroon block mb-1 font-bold">ME</span>
-                    <span class="font-bold text-festive-maroon">"Bhai, mujhe sab pata hai. 😌❤️"</span>
+                <div onclick="rightAnswer('q2-correct')" class="quiz-option cursor-pointer p-4 rounded-xl shadow-[0_0_10px_rgba(225,29,72,0.3)] btn-squish border-pink-400">
+                    <span class="text-xs text-amber-300 block mb-1 uppercase font-bold">ME</span>
+                    <span class="font-bold text-white">"Bhai, mujhe sab pata hai. 😌❤️"</span>
                 </div>
             </div>
         </section>
 
-        <!-- Right Answer Modal (For Q2) -->
-        <div id="q2-correct" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
-            <div class="glass-panel p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300 gold-border" id="q2-correct-content">
-                <div class="text-6xl mb-4 animate-wiggle">😈</div>
-                <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-2">Exactly! 😎</h2>
-                <p class="font-sans text-gray-700 mb-6">Saare raaz safe hain mere paas... jab tak meri baatein maante rahoge! 😂❤️</p>
-                <button onclick="proceedTo(5, 'q2-correct')" class="w-full px-6 py-3 bg-festive-red text-white rounded-full font-semibold hover:bg-festive-maroon transition-colors shadow-lg shadow-red-200">
-                    NEXT →
-                </button>
-            </div>
-        </div>
-
-        <!-- Simple Reaction Modal -->
-        <div id="reaction-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
-            <div class="glass-panel p-6 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="reaction-modal-content">
-                <p id="reaction-text-context" class="text-sm text-gray-500 mb-2 italic"></p>
-                <h2 id="reaction-text" class="font-serif text-2xl text-festive-red font-bold mb-6"></h2>
-                <div id="reaction-buttons" class="flex flex-col gap-2">
-                    <!-- Buttons injected by JS -->
-                </div>
-            </div>
-        </div>
-
-
-        <!-- SCREEN 5: Q3 - Money Question -->
+        <!-- ================= SCREEN 5: Q3 ================= -->
         <section id="screen-5" class="screen flex-col items-center text-center">
-            <div class="text-sm font-bold text-festive-gold tracking-widest mb-2">QUESTION 3 💸</div>
-            <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-6">"Agar tumhe paise chahiye ho, kis sister ko call karoge? 😂"</h2>
+            <div class="text-xs font-bold text-green-300 bg-green-900/40 px-3 py-1 rounded-full border border-green-500/30 tracking-widest mb-4">QUESTION 3 💸</div>
+            <h2 class="heading-font text-2xl text-pink-300 font-bold mb-6">"Agar tumhe paise chahiye ho, kis sister ko call karoge? 😂"</h2>
 
             <div class="grid grid-cols-1 gap-3 w-full text-left">
-                <div onclick="simpleReaction('Kyun chahiye? Kab wapas karoge? 🧐', 'Sister 1: Pehle reason batao. 😐')" class="cursor-pointer glass-panel p-4 rounded-xl border hover:bg-gray-50">
-                    <span class="text-sm text-gray-500 block">Sister 1</span>
-                    <span class="font-medium">"Pehle reason batao. 😐"</span>
+                <div onclick="simpleReaction('Kyun chahiye? Kab wapas karoge? 🧐', 'Sister 1: Pehle reason batao. 😐')" class="quiz-option cursor-pointer p-4 rounded-xl btn-squish">
+                    <span class="text-xs text-pink-300/70 block uppercase font-bold">Sister 1</span>
+                    <span class="font-medium text-white">"Pehle reason batao. 😐"</span>
                 </div>
-                <div onclick="simpleReaction('Interest lagega bhai! 📈', 'Sister 2: Kitne chahiye? 🤔')" class="cursor-pointer glass-panel p-4 rounded-xl border hover:bg-gray-50">
-                    <span class="text-sm text-gray-500 block">Sister 2</span>
-                    <span class="font-medium">"Kitne chahiye? 🤔"</span>
+                <div onclick="simpleReaction('Interest lagega bhai! 📈', 'Sister 2: Kitne chahiye? 🤔')" class="quiz-option cursor-pointer p-4 rounded-xl btn-squish">
+                    <span class="text-xs text-pink-300/70 block uppercase font-bold">Sister 2</span>
+                    <span class="font-medium text-white">"Kitne chahiye? 🤔"</span>
                 </div>
-                <div onclick="simpleReaction('Main toh khud udhaar pe hoon! 😭', 'Sister 3: Mere paas khud nahi hain. 😂')" class="cursor-pointer glass-panel p-4 rounded-xl border hover:bg-gray-50">
-                    <span class="text-sm text-gray-500 block">Sister 3</span>
-                    <span class="font-medium">"Mere paas khud nahi hain. 😂"</span>
+                <div onclick="simpleReaction('Main toh khud udhaar pe hoon! 😭', 'Sister 3: Mere paas khud nahi hain. 😂')" class="quiz-option cursor-pointer p-4 rounded-xl btn-squish">
+                    <span class="text-xs text-pink-300/70 block uppercase font-bold">Sister 3</span>
+                    <span class="font-medium text-white">"Mere paas khud nahi hain. 😂"</span>
                 </div>
-                <div onclick="nextScreen(6)" class="cursor-pointer glass-panel p-4 rounded-xl gold-border bg-white hover:bg-festive-pink transition-all">
-                    <span class="text-sm text-festive-maroon block font-bold">ME</span>
-                    <span class="font-bold text-festive-maroon">"Pehle dekhti hoon… phir decide karungi. 😌"</span>
+                <div onclick="nextScreen(6)" class="cursor-pointer glass-box bg-white/10 p-4 rounded-xl border border-amber-400 hover:bg-white/20 transition-all btn-squish">
+                    <span class="text-xs text-amber-300 block font-bold uppercase">ME</span>
+                    <span class="font-bold text-white drop-shadow-md">"Pehle dekhti hoon… phir decide karungi. 😌"</span>
                 </div>
             </div>
         </section>
 
-        <!-- SCREEN 6: Q4 - Annoying Question -->
+        <!-- ================= SCREEN 6: Q4 ================= -->
         <section id="screen-6" class="screen flex-col items-center text-center">
-            <div class="text-sm font-bold text-festive-gold tracking-widest mb-2">QUESTION 4 🤣</div>
-            <p class="text-gray-500 mb-1">"Honestly answer karna… 👀"</p>
-            <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-6">"Sabse zyada tumhe kaun pareshan karta hai?" 😂</h2>
+            <div class="text-xs font-bold text-amber-300 bg-amber-900/40 px-3 py-1 rounded-full border border-amber-500/30 tracking-widest mb-2">QUESTION 4 🤣</div>
+            <p class="text-pink-200/80 mb-4 text-sm italic">"Honestly answer karna… 👀"</p>
+            <h2 class="heading-font text-2xl text-pink-300 font-bold mb-6">"Sabse zyada tumhe kaun pareshan karta hai?" 😂</h2>
 
             <div class="grid grid-cols-2 gap-4 w-full">
-                <div onclick="annoyingReaction('Sister 1')" class="cursor-pointer glass-panel py-6 rounded-xl border text-center hover:bg-gray-50">
-                    <span class="font-bold">Sister 1</span>
+                <div onclick="annoyingReaction('Sister 1')" class="quiz-option cursor-pointer py-6 rounded-xl text-center btn-squish">
+                    <span class="font-bold text-white">Sister 1</span>
                 </div>
-                <div onclick="annoyingReaction('Sister 2')" class="cursor-pointer glass-panel py-6 rounded-xl border text-center hover:bg-gray-50">
-                    <span class="font-bold">Sister 2</span>
+                <div onclick="annoyingReaction('Sister 2')" class="quiz-option cursor-pointer py-6 rounded-xl text-center btn-squish">
+                    <span class="font-bold text-white">Sister 2</span>
                 </div>
-                <div onclick="annoyingReaction('Sister 3')" class="cursor-pointer glass-panel py-6 rounded-xl border text-center hover:bg-gray-50">
-                    <span class="font-bold">Sister 3</span>
+                <div onclick="annoyingReaction('Sister 3')" class="quiz-option cursor-pointer py-6 rounded-xl text-center btn-squish">
+                    <span class="font-bold text-white">Sister 3</span>
                 </div>
-                <div onclick="annoyingReaction('ME')" class="cursor-pointer glass-panel py-6 rounded-xl gold-border text-center hover:bg-festive-pink bg-white">
-                    <span class="font-bold text-festive-maroon">ME</span>
+                <div onclick="annoyingReaction('ME')" class="cursor-pointer glass-box bg-white/10 py-6 rounded-xl border border-amber-400 text-center btn-squish shadow-[0_0_15px_rgba(251,191,36,0.3)]">
+                    <span class="font-bold text-amber-300">ME</span>
                 </div>
             </div>
         </section>
 
-        <div id="annoying-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
-            <div class="glass-panel p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-red-200" id="annoying-modal-content">
-                <div class="text-5xl mb-4">📸😏</div>
-                <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-2">Are you sure?</h2>
-                <p class="font-sans text-gray-700 mb-6">Bhai, screenshots liye ja rahe hain. 😂 Proof ban gaya ab toh!</p>
-                <button onclick="proceedTo(7, 'annoying-modal')" class="w-full px-6 py-3 bg-gray-800 text-white rounded-full font-semibold hover:bg-black transition-colors">
-                    NEXT QUESTION 🏃‍♂️
-                </button>
-            </div>
-        </div>
-
-        <!-- SCREEN 7: Q5 - Escape Question -->
+        <!-- ================= SCREEN 7: Q5 ================= -->
         <section id="screen-7" class="screen flex-col items-center text-center">
-            <div class="text-sm font-bold text-festive-gold tracking-widest mb-2">QUESTION 5 🎁</div>
-            <h2 class="font-serif text-xl md:text-2xl text-festive-maroon font-bold mb-6">"Agar chaaro sisters ek saath gift maang lein… tum kya karoge?"</h2>
+            <div class="text-xs font-bold text-amber-300 bg-amber-900/40 px-3 py-1 rounded-full border border-amber-500/30 tracking-widest mb-4">QUESTION 5 🎁</div>
+            <h2 class="heading-font text-xl md:text-2xl text-pink-300 font-bold mb-6 leading-relaxed">"Agar chaaro sisters ek saath gift maang lein… tum kya karoge?"</h2>
 
             <div class="flex flex-col gap-3 w-full text-left">
-                <button onclick="escapeReaction('Nice escape attempt, Bhai. 😂')" class="p-4 glass-panel rounded-xl border text-left hover:bg-gray-50">
+                <button onclick="escapeReaction('Nice escape attempt, Bhai. 😂')" class="quiz-option p-4 rounded-xl text-left btn-squish text-white">
                     A. 🏃‍♂️ Bhaag jaunga
                 </button>
-                <button onclick="escapeReaction('Nice escape attempt, Bhai. 😂')" class="p-4 glass-panel rounded-xl border text-left hover:bg-gray-50">
+                <button onclick="escapeReaction('Nice escape attempt, Bhai. 😂')" class="quiz-option p-4 rounded-xl text-left btn-squish text-white">
                     B. 📱 Phone silent kar dunga
                 </button>
-                <button onclick="escapeReaction('Mummy bhi humari side hain! 😂')" class="p-4 glass-panel rounded-xl border text-left hover:bg-gray-50">
+                <button onclick="escapeReaction('Mummy bhi humari side hain! 😂')" class="quiz-option p-4 rounded-xl text-left btn-squish text-white">
                     C. 😭 Mummy ko bulaunga
                 </button>
-                <button onclick="escapeReaction('Good answer! 😎❤️', true)" class="p-4 glass-panel rounded-xl gold-border bg-white text-left hover:bg-festive-pink font-bold text-festive-maroon shadow-md">
+                <button onclick="escapeReaction('Good answer! 😎❤️', true)" class="glass-box bg-white/10 border border-amber-400 p-4 rounded-xl text-left btn-squish font-bold text-amber-300 shadow-[0_0_15px_rgba(251,191,36,0.3)]">
                     D. ❤️ Sabko gift dunga
                 </button>
             </div>
         </section>
 
-        <!-- Escape Reaction Modal -->
-        <div id="escape-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
-            <div class="glass-panel p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="escape-modal-content">
-                <h2 id="escape-msg" class="font-serif text-2xl text-festive-maroon font-bold mb-6"></h2>
-                <div id="escape-btn-container" class="flex flex-col gap-2">
-                    <!-- Buttons injected by JS -->
-                </div>
-            </div>
-        </div>
-
-
-        <!-- SCREEN 8: Q6 - Dangerous Sister -->
+        <!-- ================= SCREEN 8: Q6 ================= -->
         <section id="screen-8" class="screen flex-col items-center text-center">
-            <div class="text-sm font-bold text-festive-gold tracking-widest mb-2">QUESTION 6 😈</div>
-            <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-6">"Chaaro mein sabse dangerous kaun hai? 👀"</h2>
+            <div class="text-xs font-bold text-amber-300 bg-amber-900/40 px-3 py-1 rounded-full border border-amber-500/30 tracking-widest mb-4">QUESTION 6 😈</div>
+            <h2 class="heading-font text-2xl text-pink-300 font-bold mb-6">"Chaaro mein sabse dangerous kaun hai? 👀"</h2>
 
-            <div class="grid grid-cols-1 gap-3 w-full">
-                <div onclick="simpleReaction('Pura plan ready rehta hai iska! 📝', '')" class="cursor-pointer glass-panel p-4 rounded-xl border flex justify-between items-center hover:bg-gray-50">
+            <div class="grid grid-cols-1 gap-3 w-full text-left">
+                <div onclick="simpleReaction('Pura plan ready rehta hai iska! 📝', '')" class="quiz-option cursor-pointer p-4 rounded-xl flex justify-between items-center btn-squish">
                     <div>
-                        <span class="block font-bold">Sister 1</span>
-                        <span class="text-sm text-gray-500">😎 THE BOSS</span>
+                        <span class="block font-bold text-white">Sister 1</span>
+                        <span class="text-xs text-pink-300/70">😎 THE BOSS</span>
                     </div>
                 </div>
-                <div onclick="simpleReaction('Chup reh kar sab notice karti hai! 👀', '')" class="cursor-pointer glass-panel p-4 rounded-xl border flex justify-between items-center hover:bg-gray-50">
+                <div onclick="simpleReaction('Chup reh kar sab notice karti hai! 👀', '')" class="quiz-option cursor-pointer p-4 rounded-xl flex justify-between items-center btn-squish">
                     <div>
-                        <span class="block font-bold">Sister 2</span>
-                        <span class="text-sm text-gray-500">😶 The Silent One</span>
+                        <span class="block font-bold text-white">Sister 2</span>
+                        <span class="text-xs text-pink-300/70">😶 The Silent One</span>
                     </div>
                 </div>
-                <div onclick="simpleReaction('Ghar mein hangama iski wajah se hi hota hai! 🌪️', '')" class="cursor-pointer glass-panel p-4 rounded-xl border flex justify-between items-center hover:bg-gray-50">
+                <div onclick="simpleReaction('Ghar mein hangama iski wajah se hi hota hai! 🌪️', '')" class="quiz-option cursor-pointer p-4 rounded-xl flex justify-between items-center btn-squish">
                     <div>
-                        <span class="block font-bold">Sister 3</span>
-                        <span class="text-sm text-gray-500">🤣 The Chaos Creator</span>
+                        <span class="block font-bold text-white">Sister 3</span>
+                        <span class="text-xs text-pink-300/70">🤣 The Chaos Creator</span>
                     </div>
                 </div>
-                <div onclick="nextScreen(9)" class="cursor-pointer glass-panel p-4 rounded-xl gold-border bg-white flex justify-between items-center hover:bg-festive-pink">
+                <div onclick="nextScreen(9)" class="cursor-pointer glass-box bg-white/10 p-4 rounded-xl border border-amber-400 flex justify-between items-center btn-squish shadow-[0_0_15px_rgba(251,191,36,0.3)]">
                     <div>
-                        <span class="block font-bold text-festive-maroon">ME</span>
-                        <span class="text-sm text-festive-gold font-bold">🧠 the Planner</span>
+                        <span class="block font-bold text-amber-300">ME</span>
+                        <span class="text-xs text-white/80 font-bold">🧠 the Planner</span>
                     </div>
-                    <span class="text-xl">😎</span>
+                    <span class="text-2xl animate-pulse">😎</span>
                 </div>
             </div>
         </section>
 
-        <!-- SCREEN 9: Final Choice -->
+        <!-- ================= SCREEN 9: Final Choice ================= -->
         <section id="screen-9" class="screen flex-col items-center text-center">
-            <div id="suspense-text">
-                <p class="text-gray-500 mb-2">Okay… last question.</p>
-                <!-- Paused content gets shown via JS -->
+            <div id="suspense-text" class="py-10">
+                <p class="text-pink-200/80 text-lg mb-2 italic">Okay… last question.</p>
             </div>
             
             <div id="final-q-container" class="hidden flex-col items-center w-full mt-4">
-                <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-8">"Rakhi par sabse special gift kis sister ko doge?" 👀🎁</h2>
+                <h2 class="heading-font text-2xl text-pink-300 font-bold mb-8 leading-tight">"Rakhi par sabse special gift kis sister ko doge?" 👀🎁</h2>
                 
                 <div class="grid grid-cols-2 gap-4 w-full">
-                     <div onclick="wrongAnswer('Dhokha! 😂')" class="cursor-pointer glass-panel p-4 rounded-xl border text-center hover:bg-gray-50">
-                        <span class="font-bold">Sister 1</span>
+                     <div onclick="wrongAnswer('Dhokha! 😂')" class="quiz-option cursor-pointer p-6 rounded-xl text-center btn-squish">
+                        <span class="font-bold text-white">Sister 1</span>
                     </div>
-                    <div onclick="wrongAnswer('Dhokha! 😂')" class="cursor-pointer glass-panel p-4 rounded-xl border text-center hover:bg-gray-50">
-                        <span class="font-bold">Sister 2</span>
+                    <div onclick="wrongAnswer('Dhokha! 😂')" class="quiz-option cursor-pointer p-6 rounded-xl text-center btn-squish">
+                        <span class="font-bold text-white">Sister 2</span>
                     </div>
-                    <div onclick="wrongAnswer('Galat jawab! 😤')" class="cursor-pointer glass-panel p-4 rounded-xl border text-center hover:bg-gray-50">
-                        <span class="font-bold">Sister 3</span>
+                    <div onclick="wrongAnswer('Galat jawab! 😤')" class="quiz-option cursor-pointer p-6 rounded-xl text-center btn-squish">
+                        <span class="font-bold text-white">Sister 3</span>
                     </div>
-                    <div onclick="finalChoiceCorrect()" class="cursor-pointer glass-panel p-4 rounded-xl gold-border bg-white text-center hover:bg-festive-pink shadow-md">
-                        <span class="font-bold text-festive-maroon">ME😌 </span>
+                    <div onclick="finalChoiceCorrect()" class="cursor-pointer glass-box bg-white/10 p-6 rounded-xl border border-amber-400 text-center btn-squish shadow-[0_0_20px_rgba(251,191,36,0.4)]">
+                        <span class="font-bold text-amber-300 text-lg">ME 😌</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final Choice Modal -->
-        <div id="final-choice-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
-            <div class="glass-panel p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300 gold-border" id="final-choice-modal-content">
-                <div class="text-6xl mb-4 animate-float">🎉💖</div>
-                <h2 class="font-serif text-2xl text-festive-maroon font-bold mb-2">I KNEW IT! 😭❤️</h2>
-                <p class="font-sans text-gray-700 mb-6">Mera bhai mujhe itna toh jaanta hi hai. 😌</p>
-                <button onclick="proceedTo(10, 'final-choice-modal')" class="w-full px-6 py-3 bg-festive-red text-white rounded-full font-semibold hover:bg-festive-maroon transition-colors shadow-lg">
-                    CONTINUE 🎁
-                </button>
-            </div>
-        </div>
-
-
-        <!-- SCREEN 10: Surprise Gift -->
+        <!-- ================= SCREEN 10: Surprise Gift ================= -->
         <section id="screen-10" class="screen flex-col items-center text-center">
             <div id="gift-intro" class="mb-12 transition-opacity duration-500">
-                <h2 class="font-serif text-3xl md:text-4xl text-festive-maroon font-bold mb-4">Tumne test pass kar liya! 😎</h2>
-                <p class="font-sans text-xl text-gray-700 mb-2">Ab tumhare liye bhi ek surprise hai… ❤️</p>
+                <h2 class="heading-font text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500 font-bold mb-4 drop-shadow-lg">Tumne test pass kar liya! 😎</h2>
+                <p class="font-sans text-pink-100/90 mb-2">Ab tumhare liye bhi ek surprise hai… ❤️</p>
             </div>
 
-            <div class="gift-container animate-float my-8" id="gift-box" onclick="openGift()">
+            <!-- Styled CSS Gift Box -->
+            <div class="gift-container animate-bounce-soft my-8" id="gift-box" onclick="openGift()">
                 <div class="gift-glow"></div>
                 <div class="gift-box">
                     <div class="gift-ribbon-v"></div>
                     <div class="gift-ribbon-h"></div>
-                    <div class="gift-lid">
+                    <div class="gift-lid flex justify-center">
                         <div class="gift-lid-ribbon"></div>
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-6 flex justify-between">
-                            <div class="w-5 h-5 border-2 border-festive-gold rounded-full bg-festive-gold/20"></div>
-                            <div class="w-5 h-5 border-2 border-festive-gold rounded-full bg-festive-gold/20"></div>
+                        <!-- Ribbon Bow -->
+                        <div class="absolute -top-6 flex gap-1">
+                            <div class="w-8 h-8 border-4 border-amber-400 rounded-full rounded-br-none rotate-45 bg-amber-400/20"></div>
+                            <div class="w-8 h-8 border-4 border-amber-400 rounded-full rounded-bl-none -rotate-45 bg-amber-400/20"></div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="mt-8" id="gift-btn-container">
-                <button onclick="openGift()" class="px-8 py-3 bg-gradient-to-r from-red-600 to-festive-red text-white font-sans font-bold rounded-full shadow-lg hover:shadow-xl transition-all animate-pulse-slow">
+                <button onclick="openGift()" class="btn-squish px-8 py-4 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold rounded-full shadow-[0_0_20px_rgba(225,29,72,0.5)] border border-pink-400/50 hover:shadow-[0_0_30px_rgba(225,29,72,0.8)]">
                     OPEN YOUR GIFT 🎁
                 </button>
             </div>
         </section>
 
-
-        <!-- SCREEN 11: Four Sisters Memories -->
-        <section id="screen-11" class="screen flex-col items-center justify-start text-center min-h-[80vh] pt-4">
+        <!-- ================= SCREEN 11: Four Sisters Memories ================= -->
+        <section id="screen-11" class="screen flex-col items-center justify-center text-center h-full">
             
-            <h2 class="font-serif text-3xl text-festive-red font-bold mb-8 animate-wiggle">From Your Four Sisters ❤️</h2>
+            <h2 class="heading-font text-3xl md:text-4xl text-amber-300 font-bold mb-10 drop-shadow-lg">From Your Four Sisters ❤️</h2>
 
-            <div class="grid grid-cols-2 gap-4 w-full mb-8 relative">
+            <div class="grid grid-cols-2 gap-6 md:gap-10 w-full max-w-sm mx-auto mb-8 relative">
                 <!-- Center Heart Connection -->
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-4xl animate-pulse drop-shadow-lg">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 text-5xl animate-pulse drop-shadow-[0_0_15px_rgba(225,29,72,1)]">
                     ❤️
                 </div>
 
                 <!-- Sister 1 -->
-                <div class="photo-reveal flex items-center justify-center p-2" id="final-photo-1">
-                    <div class="animate-float">
-                        <div class="w-36 h-36 rounded-full gold-border overflow-hidden bg-white shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim">
-                            <img src="image11.png" class="w-full h-full object-cover" alt="Sister 1">
+                <div class="photo-reveal flex items-center justify-center" id="final-photo-1">
+                    <div class="animate-bounce-soft">
+                        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-pink-400 overflow-hidden bg-black/40 shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim">
+                            <img src="image11.png" class="w-full h-full object-cover" alt="Sister 1" onerror="this.src='https://placehold.co/400x400/fda4af/4c0519?text=Sis+1'">
                         </div>
                     </div>
                 </div>
                 
                 <!-- Sister 2 -->
-                <div class="photo-reveal flex items-center justify-center p-2" id="final-photo-2">
-                    <div class="animate-float-slow">
-                        <div class="w-36 h-36 rounded-full gold-border overflow-hidden bg-white shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim" style="animation-delay: 0.5s">
-                            <img src="image3.png" class="w-full h-full object-cover" alt="Sister 2">
+                <div class="photo-reveal flex items-center justify-center" id="final-photo-2">
+                    <div class="animate-wiggle" style="animation-duration: 4s;">
+                        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-amber-400 overflow-hidden bg-black/40 shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim" style="animation-delay: 0.5s">
+                            <img src="image3.png" class="w-full h-full object-cover" alt="Sister 2" onerror="this.src='https://placehold.co/400x400/fcd34d/78350f?text=Sis+2'">
                         </div>
                     </div>
                 </div>
 
                 <!-- Sister 3 -->
-                <div class="photo-reveal flex items-center justify-center p-2" id="final-photo-3">
-                    <div class="animate-float">
-                        <div class="w-36 h-36 rounded-full gold-border overflow-hidden bg-white shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim" style="animation-delay: 1s">
-                            <img src="image.png" class="w-full h-full object-cover" alt="Sister 3">
+                <div class="photo-reveal flex items-center justify-center" id="final-photo-3">
+                    <div class="animate-bounce-soft" style="animation-delay: 0.8s;">
+                        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-pink-400 overflow-hidden bg-black/40 shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim" style="animation-delay: 1s">
+                            <img src="image.png" class="w-full h-full object-cover" alt="Sister 3" onerror="this.src='https://placehold.co/400x400/fda4af/4c0519?text=Sis+3'">
                         </div>
                     </div>
                 </div>
 
                 <!-- Sister 4 -->
-                <div class="photo-reveal flex items-center justify-center p-2" id="final-photo-4">
-                    <div class="animate-float-slow">
-                        <div class="w-36 h-36 rounded-full gold-border overflow-hidden bg-white shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim" style="animation-delay: 1.5s">
-                            <img src="image2.png" class="w-full h-full object-cover" alt="Sister 4">
+                <div class="photo-reveal flex items-center justify-center" id="final-photo-4">
+                    <div class="animate-wiggle" style="animation-duration: 3.5s;">
+                        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-amber-400 overflow-hidden bg-black/40 shadow-2xl relative transform hover:scale-110 transition-transform duration-300 pulse-glow-anim" style="animation-delay: 1.5s">
+                            <img src="image2.png" class="w-full h-full object-cover" alt="Sister 4" onerror="this.src='https://placehold.co/400x400/fcd34d/78350f?text=Sis+4'">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="final-message-1" class="opacity-0 transition-opacity duration-1000 transform translate-y-4 w-full">
-                <p class="font-sans text-gray-800 text-lg mb-3">
+            <div id="final-message-1" class="opacity-0 transition-opacity duration-1000 transform translate-y-4 w-full glass-box p-6 rounded-3xl mt-4 border border-pink-500/30">
+                <p class="font-sans text-pink-100 text-sm md:text-base mb-2 italic">
                     "Hum chaaro tumhe kitna bhi pareshan karein…" 😂
                 </p>
-                <p class="font-sans text-gray-800 text-lg mb-3">
+                <p class="font-sans text-pink-100 text-sm md:text-base mb-2 italic">
                     "Tumse kitna bhi ladein…"
                 </p>
-                <p class="font-sans text-festive-maroon font-semibold text-xl mb-6">
+                <p class="font-sans text-amber-300 font-semibold text-lg md:text-xl mb-6 drop-shadow-md">
                     "Tum hum sabke liye bahut special ho. ❤️"
                 </p>
-                <h3 class="font-serif text-2xl text-festive-gold font-bold mb-8">Happy Raksha Bandhan, Bhai! 🎀❤️</h3>
+                <h3 class="heading-font text-2xl md:text-3xl text-white font-bold mb-6">Happy Raksha Bandhan, Bhai! 🎀❤️</h3>
                 
-                <button onclick="nextScreen(12)" class="text-sm font-semibold text-gray-400 hover:text-gray-600 transition-colors">
+                <button onclick="nextScreen(12)" class="btn-squish px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full text-sm font-bold text-white transition-all">
                     See Final Message →
                 </button>
             </div>
         </section>
 
-        <!-- SCREEN 12: The End -->
-       <section id="screen-12" class="screen flex-col items-center justify-center text-center h-full">
+        <!-- ================= SCREEN 12: The End ================= -->
+       <section id="screen-12" class="screen flex-col items-center justify-center text-center h-full w-full">
 
-    <!-- Photos Arrangement -->
-    <div class="relative w-[340px] h-[340px] md:w-[440px] md:h-[440px] mb-10 mx-auto mt-8">
+            <!-- Photos Arrangement - Preserved exactly as requested but styled for dark theme -->
+            <div class="relative w-[340px] h-[340px] md:w-[440px] md:h-[440px] mb-6 mx-auto mt-4">
 
-        <!-- Sister 1 - Top Left -->
-        <div class="absolute top-2 left-4 md:left-8 w-20 h-20 md:w-24 md:h-24 z-20">
-            <img src="image11.png"
-                class="w-full h-full rounded-full object-contain sister-photo shadow-lg"
-                alt="Sister">
-        </div>
+                <!-- Sister 1 - Top Left -->
+                <div class="absolute top-2 left-4 md:left-8 w-20 h-20 md:w-24 md:h-24 z-20">
+                    <img src="image11.png" class="w-full h-full rounded-full border-2 border-pink-400 object-cover shadow-[0_0_15px_rgba(244,63,94,0.5)]" alt="Sister" onerror="this.src='https://placehold.co/400x400/fda4af/4c0519?text=S1'">
+                </div>
 
-        <!-- Sister 2 - Top Right -->
-        <div class="absolute top-2 right-4 md:right-8 w-20 h-20 md:w-24 md:h-24 z-20">
-            <img src="image3.png"
-                class="w-full h-full rounded-full object-cover sister-photo shadow-lg"
-                alt="Sister">
-        </div>
+                <!-- Sister 2 - Top Right -->
+                <div class="absolute top-2 right-4 md:right-8 w-20 h-20 md:w-24 md:h-24 z-20">
+                    <img src="image3.png" class="w-full h-full rounded-full border-2 border-amber-400 object-cover shadow-[0_0_15px_rgba(251,191,36,0.5)]" alt="Sister" onerror="this.src='https://placehold.co/400x400/fcd34d/78350f?text=S2'">
+                </div>
 
-        <!-- Brother - CENTER -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                    w-44 h-44 md:w-56 md:h-56 z-30">
-            <img src="imagee.png"
-                class="w-full h-full rounded-full gold-border shadow-xl object-contain pulse-glow-anim"
-                alt="Brother">
-        </div>
+                <!-- Brother - CENTER -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-44 md:w-56 md:h-56 z-30">
+                    <img src="imagee.png" class="w-full h-full rounded-full border-4 border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.8)] object-contain bg-black/40 pulse-glow-anim" alt="Brother" onerror="this.src='https://placehold.co/400x400/1e1b4b/fbbf24?text=Bhai'">
+                </div>
 
-        <!-- Sister 3 - Bottom Left -->
-        <div class="absolute bottom-2 left-4 md:left-8 w-20 h-20 md:w-24 md:h-24 z-20">
-            <img src="image.png"
-                class="w-full h-full rounded-full object-cover sister-photo shadow-lg"
-                alt="Sister">
-        </div>
+                <!-- Sister 3 - Bottom Left -->
+                <div class="absolute bottom-2 left-4 md:left-8 w-20 h-20 md:w-24 md:h-24 z-20">
+                    <img src="image.png" class="w-full h-full rounded-full border-2 border-pink-400 object-cover shadow-[0_0_15px_rgba(244,63,94,0.5)]" alt="Sister" onerror="this.src='https://placehold.co/400x400/fda4af/4c0519?text=S3'">
+                </div>
 
-        <!-- Sister 4 - Bottom Right -->
-        <div class="absolute bottom-2 right-4 md:right-8 w-20 h-20 md:w-24 md:h-24 z-20">
-            <img src="image2.png"
-                class="w-full h-full rounded-full object-cover sister-photo shadow-lg"
-                alt="Sister">
-        </div>
+                <!-- Sister 4 - Bottom Right -->
+                <div class="absolute bottom-2 right-4 md:right-8 w-20 h-20 md:w-24 md:h-24 z-20">
+                    <img src="image2.png" class="w-full h-full rounded-full border-2 border-amber-400 object-cover shadow-[0_0_15px_rgba(251,191,36,0.5)]" alt="Sister" onerror="this.src='https://placehold.co/400x400/fcd34d/78350f?text=S4'">
+                </div>
 
-    </div>
+            </div>
 
-    <div class="glass-panel p-6 rounded-2xl w-full z-10 relative">
+            <div class="glass-box p-6 rounded-3xl w-full max-w-md z-10 relative border border-pink-500/30 shadow-2xl">
+                <p class="font-sans text-pink-100 text-sm md:text-base mb-4 italic leading-relaxed">
+                    "Duniya tumhe kahin bhi le jaaye, <br>
+                    tumhare paas hamesha hum chaaron ka pyaar rahega. ❤️"
+                </p>
 
-        <p class="font-serif text-xl text-festive-maroon mb-4 italic">
-            "Duniya tumhe kahin bhi le jaaye, <br>
-            tumhare paas hamesha hum chaaron ka pyaar rahega. ❤️"
-        </p>
+                <p class="font-sans font-bold text-amber-300 text-lg mb-6 drop-shadow-md">
+                    Always stay happy, Bhai. ❤️
+                </p>
 
-        <p class="font-sans font-bold text-gray-800 text-lg mb-8">
-            Always stay happy, Bhai. ❤️
-        </p>
+                <div class="border-t border-pink-500/30 pt-6 mt-4">
+                    <p class="text-xs text-pink-200/70 mb-2">
+                        Okay, emotional part khatam…
+                    </p>
+                    <p class="heading-font text-xl text-white font-bold drop-shadow-md">
+                        ab Rakhi gift yaad hai na? 👀🎁😂
+                    </p>
+                </div>
+            </div>
 
-        <div class="border-t border-gray-300/50 pt-6 mt-4">
-            <p class="text-sm text-gray-500 mb-1">
-                Okay, emotional part khatam…
-            </p>
+            <div class="mt-8 font-bold text-pink-500/50 tracking-widest text-sm bg-black/20 px-4 py-1 rounded-full">
+                THE END ❤️
+            </div>
 
-            <p class="font-bold text-festive-red text-lg">
-                ab Rakhi gift yaad hai na? 👀🎁😂
-            </p>
-        </div>
+            <button onclick="location.reload()" class="mt-6 btn-squish px-6 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full text-sm font-bold text-white transition-all flex items-center gap-2">
+                <span>↻</span> Play Again
+            </button>
+        </section>
 
     </div>
 
-    <div class="mt-8 font-bold text-gray-400 tracking-widest text-sm">
-        THE END ❤️
+    <!-- ================= MODALS (Using Dark Theme) ================= -->
+    
+    <!-- Wrong Answer Modal -->
+    <div id="wrong-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-box bg-rose-950/90 border border-pink-500/50 p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="wrong-modal-content">
+            <div class="text-6xl mb-4 animate-wiggle" id="wrong-emoji">😤</div>
+            <h2 id="wrong-title" class="heading-font text-2xl text-amber-300 font-bold mb-2">Ohhh… really? 👀</h2>
+            <p id="wrong-desc" class="font-sans text-pink-100 mb-6">Bhai, ek baar aur soch lo… 😂</p>
+            <div id="wrong-buttons" class="flex flex-col gap-3">
+                <button onclick="confirmWrong()" class="btn-squish px-6 py-3 bg-white/10 text-white rounded-xl font-bold hover:bg-white/20 transition-colors w-full border border-white/20">
+                    Yes, I'm sure 😎
+                </button>
+                <button onclick="closeModal('wrong-modal')" class="btn-squish px-6 py-3 bg-gradient-to-r from-pink-600 to-rose-600 text-white rounded-xl font-bold transition-colors w-full shadow-[0_0_15px_rgba(225,29,72,0.5)]">
+                    No, let me change 😅
+                </button>
+            </div>
+        </div>
     </div>
 
-</section>
+    <!-- Right Answer Modal (Q1) -->
+    <div id="q1-correct" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-box bg-rose-950/95 border border-amber-400/50 p-8 rounded-3xl w-full max-w-sm text-center shadow-[0_0_30px_rgba(251,191,36,0.3)] transform scale-95 transition-transform duration-300" id="q1-correct-content">
+            <div class="text-6xl mb-4 animate-bounce-soft">🎉</div>
+            <h2 class="heading-font text-2xl text-amber-300 font-bold mb-2">YESSS! I KNEW IT! 😭❤️</h2>
+            <p class="font-sans text-pink-100 mb-6">Finally sach saamne aa hi gaya. 😌</p>
+            <button onclick="proceedTo(4, 'q1-correct')" class="btn-squish w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-bold shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+                NEXT →
+            </button>
+        </div>
+    </div>
 
+    <!-- Right Answer Modal (Q2) -->
+    <div id="q2-correct" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-box bg-rose-950/95 border border-amber-400/50 p-8 rounded-3xl w-full max-w-sm text-center shadow-[0_0_30px_rgba(251,191,36,0.3)] transform scale-95 transition-transform duration-300" id="q2-correct-content">
+            <div class="text-6xl mb-4 animate-wiggle">😈</div>
+            <h2 class="heading-font text-2xl text-amber-300 font-bold mb-2">Exactly! 😎</h2>
+            <p class="font-sans text-pink-100 mb-6">Saare raaz safe hain mere paas... jab tak meri baatein maante rahoge! 😂❤️</p>
+            <button onclick="proceedTo(5, 'q2-correct')" class="btn-squish w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-bold shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+                NEXT →
+            </button>
+        </div>
+    </div>
+
+    <!-- Simple Reaction Modal -->
+    <div id="reaction-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-box bg-indigo-950/95 border border-indigo-500/50 p-6 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="reaction-modal-content">
+            <p id="reaction-text-context" class="text-sm text-pink-200/70 mb-2 italic"></p>
+            <h2 id="reaction-text" class="heading-font text-2xl text-white font-bold mb-6 leading-tight"></h2>
+            <div id="reaction-buttons" class="flex flex-col gap-3">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Annoying Reaction Modal -->
+    <div id="annoying-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-box bg-red-950/95 border border-red-500/50 p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="annoying-modal-content">
+            <div class="text-5xl mb-4 animate-bounce-soft">📸😏</div>
+            <h2 class="heading-font text-2xl text-amber-300 font-bold mb-2">Are you sure?</h2>
+            <p class="font-sans text-pink-100 mb-6">Bhai, screenshots liye ja rahe hain. 😂 Proof ban gaya ab toh!</p>
+            <button onclick="proceedTo(7, 'annoying-modal')" class="btn-squish w-full px-6 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-bold transition-colors">
+                NEXT QUESTION 🏃‍♂️
+            </button>
+        </div>
+    </div>
+
+    <!-- Escape Modal -->
+    <div id="escape-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-box bg-fuchsia-950/95 border border-fuchsia-500/50 p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="escape-modal-content">
+            <h2 id="escape-msg" class="heading-font text-2xl text-amber-300 font-bold mb-6"></h2>
+            <div id="escape-btn-container" class="flex flex-col gap-3">
+                <!-- Buttons injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Choice Modal -->
+    <div id="final-choice-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden opacity-0 transition-opacity duration-300 px-4">
+        <div class="glass-box bg-rose-950/95 border border-amber-400 p-8 rounded-3xl w-full max-w-sm text-center shadow-[0_0_30px_rgba(251,191,36,0.3)] transform scale-95 transition-transform duration-300" id="final-choice-modal-content">
+            <div class="text-6xl mb-4 animate-bounce-soft">🎉💖</div>
+            <h2 class="heading-font text-2xl text-amber-300 font-bold mb-2">I KNEW IT! 😭❤️</h2>
+            <p class="font-sans text-pink-100 mb-6">Mera bhai mujhe itna toh jaanta hi hai. 😌</p>
+            <button onclick="proceedTo(10, 'final-choice-modal')" class="btn-squish w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-bold shadow-[0_0_15px_rgba(245,158,11,0.5)]">
+                CONTINUE 🎁
+            </button>
+        </div>
     </div>
 
     <script>
-        // --- Particle Engine ---
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray = [];
-        let isFinalScreen = false;
+        // ================= JAVASCRIPT =================
 
-        function setCanvasSize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', setCanvasSize);
-        setCanvasSize();
-
-        class Particle {
-            constructor(type, x, y, size, speedY, speedX, opacity) {
-                this.type = type; // 'petal', 'sparkle', 'heart'
-                this.x = x || Math.random() * canvas.width;
-                this.y = y || Math.random() * canvas.height;
-                this.size = size || (Math.random() * 5 + 2);
-                this.speedY = speedY || (Math.random() * 1 + 0.3); // Slower fall
-                this.speedX = speedX || (Math.random() * 1 - 0.5);
-                this.opacity = opacity || (Math.random() * 0.5 + 0.2);
-                this.angle = Math.random() * 360;
-                this.spin = (Math.random() - 0.5) * 2;
-                this.color = this.getColor();
-            }
-
-            getColor() {
-                if (this.type === 'sparkle') return `rgba(212, 175, 55, ${this.opacity})`;
-                if (this.type === 'heart') return `rgba(211, 47, 47, ${this.opacity})`;
-                const pinks = [`rgba(255, 182, 193, ${this.opacity})`, `rgba(255, 192, 203, ${this.opacity})`, `rgba(253, 242, 248, ${this.opacity})`];
-                return pinks[Math.floor(Math.random() * pinks.length)];
-            }
-
-            update() {
-                this.y += (this.type === 'heart' || this.type === 'sparkle' && isFinalScreen) ? -this.speedY : this.speedY; 
-                this.x += this.speedX;
-                this.angle += this.spin;
-
-                if (this.y > canvas.height + 20) {
-                    this.y = -20;
-                    this.x = Math.random() * canvas.width;
-                }
-                if (this.y < -20 && (this.type === 'heart' || isFinalScreen)) {
-                    this.y = canvas.height + 20;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle * Math.PI / 180);
-                
-                if (this.type === 'sparkle') {
-                    ctx.beginPath();
-                    ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-                    ctx.fillStyle = this.color;
-                    ctx.fill();
-                    ctx.shadowBlur = 8;
-                    ctx.shadowColor = '#d4af37';
-                } else if (this.type === 'heart') {
-                    ctx.fillStyle = this.color;
-                    ctx.beginPath();
-                    let topCurveHeight = this.size * 0.3;
-                    ctx.moveTo(0, topCurveHeight);
-                    ctx.bezierCurveTo(0, 0, -this.size, 0, -this.size, topCurveHeight);
-                    ctx.bezierCurveTo(-this.size, this.size, 0, this.size * 1.5, 0, this.size * 1.5);
-                    ctx.bezierCurveTo(0, this.size * 1.5, this.size, this.size, this.size, topCurveHeight);
-                    ctx.bezierCurveTo(this.size, 0, 0, 0, 0, topCurveHeight);
-                    ctx.closePath();
-                    ctx.fill();
-                } else {
-                    ctx.fillStyle = this.color;
-                    ctx.beginPath();
-                    ctx.moveTo(0, 0);
-                    ctx.quadraticCurveTo(this.size, -this.size, 0, -this.size * 2);
-                    ctx.quadraticCurveTo(-this.size, -this.size, 0, 0);
-                    ctx.fill();
-                }
-                ctx.restore();
+        // Particle Emojis Background (From original theme)
+        function createBackgroundParticles() {
+            const bg = document.getElementById("bg-particles");
+            const emojis = ['🪢', '🎀', '❤️', '💕', '💖', '💗', '💓', '💞', '💝', '🌸', '🌺', '🌷', '🌹', '🌼', '🌻', '✨', '💫', '⭐', '🌟', '🎁', '🎈', '🥰', '😍', '😂', '😜'];
+            for(let i=0; i<15; i++) {
+                const el = document.createElement("div");
+                el.className = "float-emoji text-2xl sm:text-3xl";
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.left = `${Math.random() * 100}vw`;
+                el.style.animationDuration = `${5 + Math.random() * 10}s`;
+                el.style.animationDelay = `${Math.random() * 5}s`;
+                bg.appendChild(el);
             }
         }
 
-        function initParticles() {
-            particlesArray = [];
-            let numParticles = window.innerWidth < 768 ? 30 : 60; // Slightly fewer for cleaner look
-            for (let i = 0; i < numParticles; i++) {
-                let type = Math.random();
-                if (type < 0.15) type = 'heart';
-                else if (type < 0.5) type = 'sparkle';
-                else type = 'petal';
-                particlesArray.push(new Particle(type));
-            }
-        }
+        // Initialize background on load
+        document.addEventListener("DOMContentLoaded", () => {
+            createBackgroundParticles();
+        });
 
+        // Confetti Wrapper using canvas-confetti
         function triggerConfetti() {
-            for(let i=0; i<40; i++) {
-                particlesArray.push(new Particle(
-                    'sparkle', 
-                    canvas.width/2 + (Math.random() - 0.5) * 50, 
-                    canvas.height/2 + (Math.random() - 0.5) * 50, 
-                    Math.random() * 6 + 3, 
-                    -(Math.random() * 4 + 2), 
-                    (Math.random() - 0.5) * 6, 
-                    1
-                ));
-            }
+            const end = Date.now() + 1000;
+            const colors = ['#ff9a9e', '#fecfef', '#fbc2eb', '#fcd34d', '#f43f5e'];
+            
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 80,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 80,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
         }
 
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        // --- Screen Navigation & Modals ---
+        // Screen Navigation
         function nextScreen(screenNumber) {
             document.querySelectorAll('.screen').forEach(s => {
                 s.classList.remove('active');
@@ -875,16 +749,19 @@
             
             setTimeout(() => {
                 const target = document.getElementById('screen-' + screenNumber);
-                target.style.display = 'flex';
-                void target.offsetWidth;
-                target.classList.add('active');
-                
-                // Specific screen triggers
-                if(screenNumber === 9) triggerScreen9Logic();
-                if(screenNumber === 11) startFinalSequence();
+                if (target) {
+                    target.style.display = 'flex';
+                    void target.offsetWidth; // trigger reflow
+                    target.classList.add('active');
+                    
+                    // Specific screen triggers
+                    if(screenNumber === 9) triggerScreen9Logic();
+                    if(screenNumber === 11) startFinalSequence();
+                }
             }, 500);
         }
 
+        // Modals Logic
         function showModal(id) {
             const modal = document.getElementById(id);
             const content = document.getElementById(id + '-content');
@@ -913,7 +790,7 @@
             }, 300);
         }
 
-        // --- Specific Quiz Logic ---
+        // Specific Quiz Logic (Unchanged text content)
         function wrongAnswer(emojiText) {
             const title = document.getElementById('wrong-title');
             const desc = document.getElementById('wrong-desc');
@@ -924,10 +801,10 @@
             desc.innerText = "Bhai, ek baar aur soch lo… 😂";
             
             buttonsContainer.innerHTML = `
-                <button onclick="confirmWrong()" class="px-6 py-2 bg-gray-100 text-gray-500 rounded-full font-semibold hover:bg-gray-200 transition-colors w-full border border-gray-300">
+                <button onclick="confirmWrong()" class="btn-squish px-6 py-3 bg-white/10 border border-white/20 text-white rounded-xl font-bold hover:bg-white/20 transition-colors w-full">
                     Yes, I'm sure 😎
                 </button>
-                <button onclick="closeModal('wrong-modal')" class="px-6 py-3 bg-festive-red text-white rounded-full font-semibold hover:bg-festive-maroon transition-colors w-full shadow-md">
+                <button onclick="closeModal('wrong-modal')" class="btn-squish px-6 py-3 bg-gradient-to-r from-pink-600 to-rose-600 text-white rounded-xl font-bold transition-colors w-full shadow-[0_0_15px_rgba(225,29,72,0.5)]">
                     No, let me change 😅
                 </button>
             `;
@@ -945,7 +822,7 @@
             desc.innerText = "Galat jawab! Aage badhne ke liye 'ME' select karna hi padega. 😂";
             
             buttonsContainer.innerHTML = `
-                <button onclick="closeModal('wrong-modal')" class="px-6 py-3 bg-festive-red text-white rounded-full font-semibold hover:bg-festive-maroon transition-colors w-full shadow-md">
+                <button onclick="closeModal('wrong-modal')" class="btn-squish px-6 py-3 bg-gradient-to-r from-pink-600 to-rose-600 text-white rounded-xl font-bold transition-colors w-full shadow-[0_0_15px_rgba(225,29,72,0.5)]">
                     Okay, Fine 😒
                 </button>
             `;
@@ -960,7 +837,6 @@
             document.getElementById('reaction-text').innerText = reactionText;
             document.getElementById('reaction-text-context').innerText = contextText;
             
-            // Detect active screen to show "Next" button
             const activeScreen = document.querySelector('.screen.active');
             let nextScreenNum = null;
             if (activeScreen && activeScreen.id) {
@@ -970,10 +846,10 @@
 
             const btnContainer = document.getElementById('reaction-buttons');
             btnContainer.innerHTML = `
-                <button onclick="closeModal('reaction-modal')" class="px-6 py-2 bg-gray-200 text-gray-800 rounded-full font-semibold hover:bg-gray-300 transition-colors w-full mb-2">
+                <button onclick="closeModal('reaction-modal')" class="btn-squish px-6 py-3 bg-white/10 border border-white/20 text-white rounded-xl font-bold hover:bg-white/20 transition-colors w-full mb-2">
                     BACK 👀
                 </button>
-                <button onclick="proceedTo(${nextScreenNum}, 'reaction-modal')" class="px-6 py-3 bg-festive-red text-white rounded-full font-semibold hover:bg-festive-maroon transition-colors w-full shadow-md">
+                <button onclick="proceedTo(${nextScreenNum}, 'reaction-modal')" class="btn-squish px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-bold transition-colors w-full shadow-[0_0_15px_rgba(99,102,241,0.5)]">
                     NEXT QUESTION →
                 </button>
             `;
@@ -990,23 +866,22 @@
             const btnContainer = document.getElementById('escape-btn-container');
             
             if(isCorrect) {
-                btnContainer.innerHTML = `<button onclick="proceedTo(8, 'escape-modal')" class="w-full px-6 py-3 bg-festive-red text-white rounded-full font-semibold shadow-md">NEXT QUESTION 😎</button>`;
+                btnContainer.innerHTML = `<button onclick="proceedTo(8, 'escape-modal')" class="btn-squish w-full px-6 py-4 bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white rounded-xl font-bold shadow-[0_0_15px_rgba(192,38,211,0.5)]">NEXT QUESTION 😎</button>`;
                 triggerConfetti();
             } else {
                 btnContainer.innerHTML = `
-                    <button onclick="closeModal('escape-modal')" class="w-full px-6 py-2 bg-gray-200 text-gray-800 rounded-full font-semibold mb-2">TRY AGAIN 👀</button>
-                    <button onclick="proceedTo(8, 'escape-modal')" class="w-full px-6 py-3 bg-festive-red text-white rounded-full font-semibold shadow-md">NEXT QUESTION Anyway 🏃‍♂️</button>
+                    <button onclick="closeModal('escape-modal')" class="btn-squish w-full px-6 py-3 bg-white/10 border border-white/20 text-white rounded-xl font-bold mb-2">TRY AGAIN 👀</button>
+                    <button onclick="proceedTo(8, 'escape-modal')" class="btn-squish w-full px-6 py-4 bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white rounded-xl font-bold shadow-[0_0_15px_rgba(192,38,211,0.5)]">NEXT QUESTION Anyway 🏃‍♂️</button>
                 `;
             }
             showModal('escape-modal');
         }
 
-        // Screen 9 Suspense Logic
         function triggerScreen9Logic() {
             setTimeout(() => {
                 document.getElementById('suspense-text').style.display = 'none';
                 document.getElementById('final-q-container').classList.remove('hidden');
-                document.getElementById('final-q-container').classList.add('flex', 'animate-fade-in');
+                document.getElementById('final-q-container').classList.add('flex');
             }, 2000);
         }
 
@@ -1015,7 +890,6 @@
             triggerConfetti();
         }
 
-        // --- Gift Logic ---
         let giftOpened = false;
         function openGift() {
             if (giftOpened) return;
@@ -1029,26 +903,24 @@
             intro.style.opacity = '0';
             btn.style.opacity = '0';
             
-            triggerConfetti();
-            
-            for(let i=0; i<50; i++) {
-                particlesArray.push(new Particle(
-                    Math.random() > 0.5 ? 'heart' : 'sparkle', 
-                    canvas.width/2, canvas.height/2, 
-                    Math.random() * 6 + 2, 
-                    -(Math.random() * 8 + 2), 
-                    (Math.random() - 0.5) * 8, 
-                    1
-                ));
-            }
+            // Big confetti pop
+            const end = Date.now() + 2000;
+            (function frame() {
+                confetti({
+                    particleCount: 10,
+                    angle: 90,
+                    spread: 120,
+                    origin: { x: 0.5, y: 0.7 },
+                    colors: ['#ff9a9e', '#fecfef', '#fbc2eb', '#fcd34d', '#f43f5e']
+                });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
 
             setTimeout(() => {
-                isFinalScreen = true;
                 nextScreen(11);
             }, 2500);
         }
 
-        // --- Final Sequence Logic ---
         function startFinalSequence() {
             const reveals = [
                 document.getElementById('final-photo-1'),
@@ -1062,10 +934,16 @@
             reveals.forEach((el, index) => {
                 setTimeout(() => {
                     el.classList.add('revealed');
+                    // Small local confetti burst per photo reveal
                     const rect = el.getBoundingClientRect();
-                    for(let i=0; i<8; i++) {
-                        particlesArray.push(new Particle('sparkle', rect.left + rect.width/2, rect.top + rect.height/2, 3, -(Math.random()*2), (Math.random()-0.5)*2, 1));
-                    }
+                    const x = (rect.left + rect.width / 2) / window.innerWidth;
+                    const y = (rect.top + rect.height / 2) / window.innerHeight;
+                    confetti({
+                        particleCount: 30,
+                        spread: 60,
+                        origin: { x: x, y: y },
+                        colors: ['#fcd34d', '#f43f5e']
+                    });
                 }, 800 + (index * 1000));
             });
 
@@ -1074,7 +952,6 @@
                 finalMessage.style.transform = 'translateY(0)';
             }, 800 + (reveals.length * 1000) + 800);
         }
-
     </script>
 </body>
 </html>
